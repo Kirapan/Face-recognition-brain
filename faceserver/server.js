@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs')
 const cors = require('cors')
 const knex = require('knex')
+require('dotenv').config()
+
 
 const register = require('./controllers/register')
 const signin = require('./controllers/signin')
@@ -23,7 +25,7 @@ const app = express();
 app.use(bodyParser.json())
 app.use(cors());
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000;
 app.get('/', (req, res) => {res.send(database.users)})
 app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)})
 app.post('/register', (req, res) => {register.handleRegister(req, res, db, bcrypt)})

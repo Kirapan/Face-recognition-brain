@@ -16,8 +16,7 @@ class Signin extends React.Component {
     this.setState({signInPassword: event.target.value})
   }
   onSubmitSignIn = async () => {
-    
-    const response = await fetch('http://localhost:3000/signin', {
+    const response = await fetch('https://vast-river-39970.herokuapp.com/signin', {
       method: 'post',
       headers:{'Content-type': 'application/json'},
       body:JSON.stringify({
@@ -27,7 +26,6 @@ class Signin extends React.Component {
     })
     const user = await response.json()
     if (user[0].id) {
-      console.log('i am home', user.id)
       this.props.loadUser(user[0]);
       this.props.onRouteChange('home')
     }
